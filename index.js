@@ -13,7 +13,7 @@ const recordRoutes = require("./routes/recordRoutes");
 const User = require("./models/userModel");
 
 // Connecting to Mongo Atlas Database
-require("./database/db").connectToMongoose();
+require("./db").connectToMongoose();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
