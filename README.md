@@ -2,29 +2,48 @@
 
 ## Description
 
-This web service provides various API endpoints to manage a dataset of records. It includes functionalities such as adding and deleting records, fetching summary statistics, fetching summary statistics department-wise ,fetching summary statistics department-subdepartment wise and authentication/authorization.
+This web service provides various API endpoints to manage a dataset of records. It includes functionalities such as adding and deleting records, fetching summary statistics, fetching summary statistics department-wise, fetching summary statistics department-subdepartment and authentication/authorization.
 
 ## Deployment
 
 You can access this web service online via Render. It's hosted at the following URL:
 https://pwassg.onrender.com
 
+### Authentication and Authorization
+
+- The user can Register/Login himself.
+- Basic authentication is implemented with a dummy user (username and password). You can use these credentials for authentication.
+
+  URL:** `POST https://pwassg.onrender.com/auth/login`
+  {
+      "username": "rohan987", 
+      "password": "abcdefgh"
+  }
+  This will return an accessToken through which we can authorize a user.
+  
+- Authorization is based on token authentication. Obtain a token after successful authentication to access protected endpoints.
 
 ## Accessing API Endpoints
 
 To access the API endpoints and test the service, you can use a tool like Postman. Follow these steps to test the API:
+
+In all APIs, you have to pass the accessToken you got while logging in for authorization.
 
 1. **Add a New Record:**
 
    - **URL:** `POST https://pwassg.onrender.com/record/add`
    - **Description:** Add a new record to the dataset.
    - **Sample Request:**
+        POST https://pwassg.onrender.com/record/add
+  
+      Sample Input Body
      {
-"name": "Rohan",
-"salary": "5000", "currency": "INR", "department": "Engineering", "sub_department": "Platform2"
-}
+      "name": "Rohan",
+      "salary": "5000", "currency": "INR", "department": "Engineering",
+      "sub_department": "Platform2"
+      }
 
-2. **Delete a Record:**
+3. **Delete a Record:**
 
    - **URL:** `DELETE https://pwassg.onrender.com/record/delete?recordId=id`
    - **Description:** Delete a record from the dataset.
@@ -61,19 +80,6 @@ To access the API endpoints and test the service, you can use a tool like Postma
    - **Sample Request:**
       GET https://pwassg.onrender.com/record/summarystatssubdepartment
      
-
-### Authentication and Authorization
-
-- Basic authentication is implemented with a dummy user (username and password). You can use these credentials for authentication.
-
-  URL:** `POST https://pwassg.onrender.com/auth/login`
-  {
-      "username": "rohan987", 
-      "password": "abcdefgh"
-  }
-  This will return a accessToken through which we can authorize an user.
-  
-- Authorization is based on token authentication. Obtain a token after successful authentication to access protected endpoints.
 
 ### Error Handling
 
