@@ -2,7 +2,7 @@
 
 ## Description
 
-This web service provides various API endpoints to manage a dataset of records. It includes functionalities such as adding and deleting records, fetching summary statistics, fetching summary statistics department-wise, fetching summary statistics department-subdepartment and authentication/authorization.
+This web service provides various API endpoints to manage a dataset of records. It includes functionalities such as adding and deleting records, fetching summary statistics, fetching summary statistics department-wise, fetching summary statistics department-subdepartment, and authentication/authorization.
 
 ## Deployment
 
@@ -12,7 +12,18 @@ https://pwassg.onrender.com
 ### Authentication and Authorization
 
 - The user can Register/Login himself.
-- Basic authentication is implemented with a dummy user (username and password). You can use these credentials for authentication.
+- The user can register himself by accessing this API.
+
+  URL:** `POST https://pwassg.onrender.com/auth/register`
+  {
+    "email": "rohangoyal991gmail.com", 
+    "username": "rohan987", 
+    "password": "abcdefgh"
+  }
+  This will return an accessToken through which we can authorize a user.
+
+
+- Basic authentication is implemented with a dummy user (username and password). You can use these credentials for authentication. We have used passportJs for authentication.
 
   URL:** `POST https://pwassg.onrender.com/auth/login`
   {
@@ -27,7 +38,7 @@ https://pwassg.onrender.com
 
 To access the API endpoints and test the service, you can use a tool like Postman. Follow these steps to test the API:
 
-In all APIs, you have to pass the accessToken you got while logging in for authorization.
+In all APIs, you have to pass the accessToken in the header of the request you got while logging in for authorization.
 
 1. **Add a New Record:**
 
@@ -43,7 +54,7 @@ In all APIs, you have to pass the accessToken you got while logging in for autho
       "sub_department": "Platform2"
       }
 
-3. **Delete a Record:**
+2. **Delete a Record:**
 
    - **URL:** `DELETE https://pwassg.onrender.com/record/delete?recordId=id`
    - **Description:** Delete a record from the dataset.
@@ -51,7 +62,7 @@ In all APIs, you have to pass the accessToken you got while logging in for autho
 
      `DELETE https://pwassg.onrender.com/record/delete?recordId=6539216b37733027dfb555ae`
 
-     3. **Fetch Summary Statistics for Salary (Entire dataset):**
+3. **Fetch Summary Statistics for Salary (Entire dataset):**
 
    - **URL:** `GET https://pwassg.onrender.com/record/summarystats`
    - **Description:** Get summary statistics (mean, min, max) for salary over the entire dataset.
